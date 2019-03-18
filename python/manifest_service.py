@@ -1,6 +1,7 @@
 import os
 import csv
 import logging
+import datetime
 
 class Manifest:
     log = logging.getLogger("manifest service")
@@ -8,18 +9,19 @@ class Manifest:
 
     @classmethod
     def create_manifest(cls):
-        if cls.manifest_exists():
-            return cls.manifest_is_valid()
-        return False
+        if cls.exists():
+            return not cls.manifest_is_valid()
+        return True
 
     @classmethod
-    def manifest_exists(cls):
+    def exists(cls):
         if os.path.exists(cls.manifest_file):
             cls.log.info("Manifest file " + cls.manifest_file + " exists.")
             return True
         cls.log.info("Manifest file " + cls.manifest_file + " does not exist.")
         return False
 
+    # This goes away and is handled by 'import' via try-catch
     @classmethod
     def manifest_is_valid(cls):
         with open(cls.manifest_file, mode='r') as manifest:
@@ -34,5 +36,13 @@ class Manifest:
                     return False
         return True
 
+    class Set:
+        def __init__(self, code, release, count, images, diff):
+            self.code = code
+            self.release: datetime.date = release
+            self.count = count
+            self.images = images
+            self.diff = diff
 
-    # how long since update?
+        def is_complete(self):
+            return self.images + self.diff == self.count
