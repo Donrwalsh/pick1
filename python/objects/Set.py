@@ -1,9 +1,11 @@
-import datetime
+from datetime import date
+from datetime import datetime
+
 
 class Set:
     def __init__(self, code, release, count, images=None, diff=None):
         self.code = code
-        self.release: datetime.date = release
+        self.release: date = release
         self.count = count
         self.images = images
         self.diff = diff
@@ -14,3 +16,8 @@ class Set:
 
     def is_complete(self):
         return self.images + self.diff == self.count
+
+    def is_recent(self):
+        return False
+        # return datetime.strptime(self.release, "%Y-%m-%d").replace(year=self.release.year + 1) > datetime.today()
+
