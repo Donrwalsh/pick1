@@ -80,3 +80,19 @@ log.info(sets[2].code)
 #
 # log.info(a_date >= another_date)
 # log.info(datetime.datetime.today().strftime('%Y-%m-%d'))
+
+layouts = ['normal',
+ 'vanguard',
+ 'token',
+ 'split',
+ 'flip',
+ 'planar',
+ 'transform',
+ 'leveler',
+ 'scheme',
+ 'double_faced_token',
+ 'emblem',
+ 'meld',
+ 'host',
+ 'augment',
+ 'saga']
