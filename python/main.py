@@ -1,5 +1,7 @@
 import logging
 import os
+import pprint
+import urllib.request
 
 from services.manifest_service import Manifest
 from services.scryfall_service import Scryfall
@@ -24,10 +26,17 @@ for set in manifest_sets:
     if not set.is_complete():
         log.info(set.code + " is not complete.")
         log.info("Fetching complete card list from set: " + set.code)
-        data = Scryfall.cards_by_set(set.code, 1, [])
+        data = Scryfall.cards_by_set(set.code)
         for card in data:
             log.info("Working on [" + set.code + "] " + card.name)
-            #does card image exist on filesystem?
-            #if no, download image and modify manifest.
+
+            # does card image exist on filesystem?
+            # if no, download image and modify manifest.
+            url = card.image_uri
+            urllib.request.urlretrieve(url, images_dir + "/" + set.code + "/" + card.name + ".jpeg")
+            exit(0)
+            #^ This fails if the folder is not created. Also doesn't do any 'smart' naming.
+
+
 
 exit(0)

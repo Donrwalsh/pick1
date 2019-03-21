@@ -34,4 +34,6 @@ class Manifest:
                 output.append(Set(row[0], row[1], row[2], row[3], row[4]))
         return output
 
-
+    @classmethod
+    def record_image_downloaded(cls, set_code):
+        pass
