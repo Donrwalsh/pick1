@@ -19,6 +19,9 @@ login: admin/secret
 ## Ansible
 Installed, ready to go.
 
+## Docker
+Docker and Docker-Compose installed. Box should have no further configuration, but we'll see how disciplined I am.
+
 ## Python
 Ready to go because Ubuntu rules. Try it out by running `python3 /vagrant/python/main.py`.
 
