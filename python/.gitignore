@@ -1,5 +1,6 @@
 venv/
 .DS_Store
+manifest.csv
 
 # User-specific stuff
 .idea/**/workspace.xml

@@ -1,5 +1,6 @@
 import logging
 import pprint
+import urllib.request
 import scrython
 
 from objects.Card import Card
@@ -24,7 +25,8 @@ class Scryfall:
         query = "e:" + set_code
         response = scrython.cards.Search(q="++{}".format(query), page=page)
         for item in response.data():
-            cards.append(Card(item['name'], item['image_uris']['large']))
+
+            cards.append(Card(item['name'], item['collector_number'], set_code, item['image_uris']['normal']))
         if response.has_more():
             return cls.cards_by_set(set_code, page + 1, cards)
         else:
@@ -32,4 +34,5 @@ class Scryfall:
 
     @classmethod
     def download_image(cls, card, path):
-        pass
+        cls.log.info("Downloading " + str(card) + " to " + path + ".")
+        urllib.request.urlretrieve(card.image_uri, path)
