@@ -6,11 +6,9 @@ from services.manifest_service import Manifest
 from services.scryfall_service import Scryfall
 from services.images_service import Images
 
-stop_at = date(1993, 8, 6)  # Script will stop after alpha
+stop_at = date(1994, 10, 6)  # Script will stop after beta
 logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
 log = logging.getLogger("MAIN")
-
-
 
 source_sets = Scryfall.generate_setlist()
 source_sets.sort(key=lambda x: x.release, reverse=False)
@@ -48,3 +46,6 @@ for set in manifest_sets:
             else:
                 log.info(path + " does not exist.")
                 Scryfall.download_image(card, path)
+                Manifest.record_image_downloaded(set.code, manifest_sets.index(set))
+    else:
+        log.info(set.code + " is complete.")

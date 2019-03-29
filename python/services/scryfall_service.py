@@ -25,8 +25,7 @@ class Scryfall:
         query = "e:" + set_code
         response = scrython.cards.Search(q="++{}".format(query), page=page)
         for item in response.data():
-
-            cards.append(Card(item['name'], item['collector_number'], set_code, item['image_uris']['normal']))
+            cards.append(Card(item['name'], item['collector_number'], set_code, item['image_uris']['normal'], item['layout']))
         if response.has_more():
             return cls.cards_by_set(set_code, page + 1, cards)
         else:

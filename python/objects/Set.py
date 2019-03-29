@@ -14,7 +14,7 @@ class Set:
                str(self.images) + ", " + str(self.diff) + "}"
 
     def is_complete(self):
-        return self.images + self.diff == self.count
+        return int(self.images) + int(self.diff) == int(self.count)
 
     def is_recent(self):
         return self.release.replace(year=self.release.year + 1) > datetime.today().date()

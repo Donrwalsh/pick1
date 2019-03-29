@@ -35,5 +35,16 @@ class Manifest:
         return output
 
     @classmethod
-    def record_image_downloaded(cls, set_code):
-        pass
+    def record_image_downloaded(cls, set_code, position):
+        cls.log.debug("Modifying manifest: Incrementing " + set_code + " image count.")
+        with open(cls.manifest_file, mode='r') as in_manifest:
+            manifest_reader = csv.reader(in_manifest.readlines())
+
+        with open(cls.manifest_file, mode="w", newline='') as out_manifest:
+            manifest_writer = csv.writer(out_manifest)
+            for line in manifest_reader:
+                if line[0] == set_code:
+                    manifest_writer.writerow([line[0], line[1], line[2], str(int(line[3])+1), line[4]])
+                else:
+                    manifest_writer.writerow(line)
+            manifest_writer.writerows(manifest_reader)
