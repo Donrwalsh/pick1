@@ -6,16 +6,8 @@ class Images:
     images_dir = '../server/src/main/resources/images'
 
     @classmethod
-    def slug(cls, card):
-        number = ''.join([i for i in card.number if i.isdigit()])
-        leading_zeros = '0' * (3 - len(number))
-        return leading_zeros + str(card.number) + "-" +\
-               card.name.replace(" ", "-")\
-                   .replace(":", "")
-
-    @classmethod
     def image_path(cls, card):
-        return cls.images_dir + "/" + card.set_code + "/" + cls.slug(card) + ".jpeg"
+        return cls.images_dir + "/" + card.set_code + "/" + card.slug() + ".jpeg"
 
     @classmethod
     def image_exists(cls, card):

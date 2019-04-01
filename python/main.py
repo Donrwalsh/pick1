@@ -37,7 +37,7 @@ for set in manifest_sets:
 
         log.info("Fetching complete card list from set: " + set.code + ".")
         data = Scryfall.cards_by_set(set.code)
-        data.sort(key=lambda x: x.number, reverse=False)
+        data.sort(key=lambda x: x.slug(), reverse=False)
         for card in data:
             path = Images.image_path(card)
             log.debug("Working on " + str(card))
