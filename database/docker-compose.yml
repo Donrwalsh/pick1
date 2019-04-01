@@ -1,0 +1,15 @@
+version: '3'
+services:
+  database:
+    build: ./mysql
+    restart: always
+    container_name: database
+    volumes:
+      - ./mysql/conf.d:/docker-entrypoint-initdb.d/
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+      - MYSQL_DATABASE=pick1
+      - MYSQL_USER=local
+      - MYSQL_PASSWORD=local
