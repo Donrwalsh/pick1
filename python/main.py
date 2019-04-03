@@ -1,13 +1,15 @@
 import logging
 import os
+import sqlparse
 from datetime import date
 
+from services.database_service import Database
 from services.manifest_service import Manifest
 from services.scryfall_service import Scryfall
 from services.images_service import Images
 
-stop_at = date(1994, 10, 6)  # Script will stop after beta
-logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
+stop_at = date(1993, 10, 6)  # Script will stop after beta
+logging.basicConfig(level=os.environ.get("LOGLEVEL", "CRITICAL"))
 log = logging.getLogger("MAIN")
 
 source_sets = Scryfall.generate_setlist()
@@ -17,6 +19,9 @@ if not Manifest.exists():
     Manifest.generate(source_sets)
 
 manifest_sets = Manifest.read()
+
+log.info("Database shenanigans")
+Database.function()
 
 for set in manifest_sets:
     if set.release > stop_at:
