@@ -3,6 +3,8 @@ import csv
 import logging
 from objects.Set import Set
 
+from services.images_service import Images
+
 
 class Manifest:
     log = logging.getLogger("MANIFEST_SERVICE")
@@ -22,7 +24,11 @@ class Manifest:
         with open(cls.manifest_file, mode='w', newline='') as manifest:
             manifest_writer = csv.writer(manifest, delimiter=",", quotechar='"', quoting=csv.QUOTE_MINIMAL)
             for set in source:
-                manifest_writer.writerow([set.code, set.release, set.count, 0, 0])
+                manifest_writer.writerow([set.code,
+                                          set.release,
+                                          set.count,
+                                          Images.count_set_images(set.code),
+                                          0])
 
     @classmethod
     def read(cls):
@@ -35,7 +41,7 @@ class Manifest:
         return output
 
     @classmethod
-    def record_image_downloaded(cls, set_code, position):
+    def record_image_downloaded(cls, set_code):
         cls.log.debug("Modifying manifest: Incrementing " + set_code + " image count.")
         with open(cls.manifest_file, mode='r') as in_manifest:
             manifest_reader = csv.reader(in_manifest.readlines())

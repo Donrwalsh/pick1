@@ -25,3 +25,11 @@ class Images:
     def create_set_dir(cls, set_code):
         cls.log.info("Creating " + set_code + " directory.")
         os.mkdir(cls.set_path(set_code))
+
+    @classmethod
+    def count_set_images(cls, set_code):
+        if cls.set_dir_exists(set_code):
+            path, dirs, files = os.walk(cls.images_dir + '/' + set_code).__next__()
+            return len(files)
+        else:
+            return 0
