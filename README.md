@@ -2,6 +2,9 @@
 
 It's pick1pack1, but this time there's a Spring Boot application instead of wordpress. The database will remain some SQL variant, but its design will need to be redone from the ground up. 
 
+## Dev-Box branch
+I don't like using a 'devops' box for this project, I'd rather just use vagrant to deploy a developer environment that is hosted on a VM. This branch will deal with moving away from the established devops box towards this more focused developer box.
+
 ## State of the Project:
 
 The idea is a repo that includes devops features driven by a system-agnostic virtual machine configured by code that is stored in the repo. Python scripts are available to allow anyone with the repo to build their own website, as the repo will not contain fetched resources such as images. The database will eventually be managed by these scripts, but may be built by hand first. Honestly not too sure how to go with the database on this one. In-memory for the portable version with a separate thread for the live site could be in the cards. 
