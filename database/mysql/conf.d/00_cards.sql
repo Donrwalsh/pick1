@@ -1,4 +1,4 @@
-CREATE TABLE cards (id INT NOT NULL AUTO_INCREMENT, 
+CREATE TABLE IF NOT EXISTS cards (id INT NOT NULL AUTO_INCREMENT, 
             name VARCHAR(50), 
             set_code VARCHAR(50),
             image_uri VARCHAR(50),
@@ -8,3 +8,4 @@ CREATE TABLE cards (id INT NOT NULL AUTO_INCREMENT,
             PRIMARY KEY ( id ) 
             ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;  
 
+INSERT IGNORE INTO cards VALUES (1, 'Animate Wall', 'lea', '001-Animate-Wall', 0, 0, 'normal');
