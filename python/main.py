@@ -19,10 +19,11 @@ if not Manifest.exists():
 
 manifest_sets = Manifest.read()
 
+# Perform Image Work
 for set in manifest_sets:
     if set.release > stop_at:
         log.info(set.code + " is after the stop at value: " + str(stop_at) + ". Terminating.")
-        exit(0)
+        break
 
     if set.is_recent():
         log.info(set.code + " is recent.")
@@ -50,3 +51,8 @@ for set in manifest_sets:
                 Manifest.record_image_downloaded(set.code)
     else:
         log.info(set.code + " is complete.")
+
+#Perform Database Work
+database = Database()
+
+database.function()

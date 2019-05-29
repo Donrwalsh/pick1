@@ -3,6 +3,8 @@ Python 3.7.3
 
 ### The List:
 
+- [ ] Now that I'm on VSCode, I'm not really digging how the script ungracefully fails when I'm not in the right directory.
+- [ ] manifest.csv needs headers, I'm already forgetting which columns are what.
 - [ ] When a manifest is generated, it should determine how many images exist in each set directory to avoid never recording an image count.
 - [ ] What if I validated the existing images (even on manifest existing) by a random sampling off of the scryfall api itself? Validation levels? (force, sample n, none)
 - [ ] Layouts. Omit unnecessary ones. Write to the manifest all about doing it.
