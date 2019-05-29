@@ -24,6 +24,8 @@ class Images:
     @classmethod
     def create_set_dir(cls, set_code):
         cls.log.info("Creating " + set_code + " directory.")
+        if not os.path.exists(cls.images_dir):
+            os.mkdir(cls.images_dir)
         os.mkdir(cls.set_path(set_code))
 
     @classmethod
