@@ -14,4 +14,9 @@ class Card:
         leading_zeros = '0' * (3 - len(number))
         return leading_zeros + str(self.number) + "-" +\
             self.name.replace(" ", "-")\
-                     .replace(":", "")
+                     .replace(":", "")\
+                     .replace("'", "")\
+                     .replace("\"", "")
+
+    def escaped_name(self):
+        return self.name.replace("'", "\\'")
