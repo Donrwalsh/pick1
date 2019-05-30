@@ -1,6 +1,5 @@
 venv/
 .DS_Store
-manifest.csv
 *.pyc
 
 # User-specific stuff
