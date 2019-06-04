@@ -1,4 +1,4 @@
-package bigbrass.pick1;
+package com.bigbrass.pick1;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

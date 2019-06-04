@@ -25,10 +25,13 @@ If you make a box and then get a runtime error about no more disk space, it's pr
 
 As of dev-box 1.0.2, I was able to get past the error for the intermediate step of turning off the docker image. The next step is to try and get a box that has maven and maven dependencies installed without hitting the out of space error.
 
-### Old:
+### Features:
 
 ## Docker
 Docker and Docker-Compose installed. 
 
 ## Python
 Ready to go because Ubuntu rules. Try it out by running `python3 /vagrant/python/main.py`.
+
+## Java & Maven
+Java is here. Maven is installed and `mvn package` is used to setup the box with prerequisites so we're not doing a fresh build each time. More mvn dependencies will require more boxes and such. 
