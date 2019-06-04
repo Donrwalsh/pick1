@@ -41,6 +41,15 @@ class Manifest:
         return output
 
     @classmethod
+    def get_count(cls, set_code):
+        cls.log.debug("Fetching real count from manifest file: " + cls.manifest_file + ".")
+        with open(cls.manifest_file, mode="r") as manifest:
+            manifest_reader = csv.reader(manifest)
+            for row in manifest_reader:
+                if row[0] == set_code:
+                    return row[3]
+
+    @classmethod
     def record_image_downloaded(cls, set_code):
         cls.log.debug("Modifying manifest: Incrementing " + set_code + " image count.")
         with open(cls.manifest_file, mode='r') as in_manifest:
@@ -51,6 +60,21 @@ class Manifest:
             for line in manifest_reader:
                 if line[0] == set_code:
                     manifest_writer.writerow([line[0], line[1], line[2], str(int(line[3])+1), line[4]])
+                else:
+                    manifest_writer.writerow(line)
+            manifest_writer.writerows(manifest_reader)
+
+    @classmethod
+    def record_diff(cls, set_code, diff):
+        cls.log.debug("Modifying manifest: Setting " + set_code + " diff count to " + str(diff) + ".")
+        with open(cls.manifest_file, mode='r') as in_manifest:
+            manifest_reader = csv.reader(in_manifest.readlines())
+
+        with open(cls.manifest_file, mode="w", newline='') as out_manifest:
+            manifest_writer = csv.writer(out_manifest)
+            for line in manifest_reader:
+                if line[0] == set_code:
+                    manifest_writer.writerow([line[0], line[1], line[2], line[3], str(diff)])
                 else:
                     manifest_writer.writerow(line)
             manifest_writer.writerows(manifest_reader)

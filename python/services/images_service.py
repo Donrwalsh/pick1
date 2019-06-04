@@ -3,7 +3,7 @@ import os
 
 class Images:
     log = logging.getLogger("IMAGES_SERVICE")
-    images_dir = '../server/src/main/resources/images'
+    images_dir = '../server/src/main/resources/static/images'
 
     @classmethod
     def image_path(cls, card):
