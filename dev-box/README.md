@@ -33,5 +33,5 @@ Docker and Docker-Compose installed.
 ## Python
 Ready to go because Ubuntu rules. Try it out by running `python3 /vagrant/python/main.py`.
 
-## Java & Maven
-Java is here. Maven is installed and `mvn package` is used to setup the box with prerequisites so we're not doing a fresh build each time. More mvn dependencies will require more boxes and such. 
+## Current Version
+We're back on v1.0.2 since it's Gradle now instead of Maven. I haven't installed Gradle yet since I'm just running from the local for now.
